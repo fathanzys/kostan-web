@@ -1,0 +1,152 @@
+.container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--background);
+  padding: 2rem;
+  position: relative;
+}
+
+.backBtn {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--muted-foreground);
+  cursor: pointer;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.backBtn:hover {
+  color: var(--foreground);
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 3rem;
+  width: 100%;
+  max-width: 440px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.logoCircle {
+  width: 64px;
+  height: 64px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem auto;
+}
+
+.header h1 {
+  font-size: 1.75rem;
+  margin-bottom: 0.5rem;
+}
+
+.formGroup {
+  margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted-foreground);
+}
+
+.inputWrapper input {
+  width: 100%;
+  padding: 1rem 1rem 1rem 3rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--background);
+  color: var(--foreground);
+  transition: all 0.2s ease;
+}
+
+.inputWrapper input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.footer {
+  margin-top: 2rem;
+  text-align: center;
+  color: var(--muted-foreground);
+  font-size: 0.95rem;
+}
+
+.switchBtn {
+  background: none;
+  border: none;
+  color: var(--primary);
+  font-weight: 600;
+  cursor: pointer;
+  margin-left: 0.5rem;
+  font-size: inherit;
+  padding: 0;
+}
+
+.switchBtn:hover {
+  text-decoration: underline;
+}
+
+.errorAlert {
+  background: rgba(239, 68, 68, 0.1);
+  color: #ef4444;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.successAlert {
+  background: rgba(16, 185, 129, 0.1);
+  color: #10b981;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
