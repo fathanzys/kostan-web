@@ -23,6 +23,7 @@ export default function AdminDashboard() {
   const [activeTab, setActiveTab] = useState('dashboard');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingRoom, setEditingRoom] = useState<Room | null>(null);
+  const [isMobileSidebarOpen, setIsMobileSidebarOpen] = useState(false);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -164,14 +165,16 @@ export default function AdminDashboard() {
       if (!error) {
         setRooms(rooms.map(r => r.id === editingRoom.id ? { ...r, ...payload } : r));
       } else {
-        alert('Gagal mengupdate kamar');
+        console.error('Update room error:', error);
+        alert(`Gagal mengupdate kamar: ${error.message || 'Unknown error'}`);
       }
     } else {
       const { data, error } = await supabase.from('rooms').insert([payload]).select();
       if (!error && data) {
         setRooms([...rooms, data[0]]);
       } else {
-        alert('Gagal menambah kamar');
+        console.error('Insert room error:', error, 'payload:', payload);
+        alert(`Gagal menambah kamar: ${error?.message || 'Unknown error'}`);
       }
     }
     setIsModalOpen(false);
@@ -192,11 +195,20 @@ export default function AdminDashboard() {
         setFormData={setFormData}
         handleSubmit={handleSubmit}
       />
-
-      <AdminSidebar activeTab={activeTab} setActiveTab={setActiveTab} userRole={userRole} />
+      <AdminSidebar 
+        activeTab={activeTab} 
+        setActiveTab={setActiveTab} 
+        userRole={userRole}
+        isOpen={isMobileSidebarOpen}
+        setIsOpen={setIsMobileSidebarOpen}
+      />
 
       <main className={styles.content}>
-        <AdminHeader searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
+        <AdminHeader 
+          searchTerm={searchTerm} 
+          setSearchTerm={setSearchTerm}
+          onMenuClick={() => setIsMobileSidebarOpen(true)}
+        />
 
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -209,9 +221,17 @@ export default function AdminDashboard() {
               {activeTab === 'rooms' && 'Manajemen Kamar'}
               {activeTab === 'occupants' && 'Data Penghuni'}
               {activeTab === 'finance' && 'Laporan Keuangan'}
+              {activeTab === 'super_admin' && 'Akses Admin'}
               {activeTab === 'settings' && 'Pengaturan'}
             </h1>
-            <p className="text-muted">Selamat datang kembali! Berikut ringkasan hari ini.</p>
+            <p className="text-muted">
+              {activeTab === 'dashboard' && 'Selamat datang kembali! Berikut ringkasan hari ini.'}
+              {activeTab === 'rooms' && 'Kelola data kamar, harga, dan ketersediaan.'}
+              {activeTab === 'occupants' && 'Pantau dan kelola data seluruh penghuni kost.'}
+              {activeTab === 'finance' && 'Laporan pemasukan dan pengeluaran secara real-time.'}
+              {activeTab === 'super_admin' && 'Kelola persetujuan dan hak akses admin lain.'}
+              {activeTab === 'settings' && 'Konfigurasi pengaturan sistem Kost H Kodir.'}
+            </p>
           </div>
 
           {(activeTab === 'dashboard' || activeTab === 'finance') && (

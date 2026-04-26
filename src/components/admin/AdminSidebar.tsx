@@ -9,9 +9,11 @@ interface AdminSidebarProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   userRole: string;
+  isOpen: boolean;
+  setIsOpen: (open: boolean) => void;
 }
 
-export default function AdminSidebar({ activeTab, setActiveTab, userRole }: AdminSidebarProps) {
+export default function AdminSidebar({ activeTab, setActiveTab, userRole, isOpen, setIsOpen }: AdminSidebarProps) {
   const router = useRouter();
 
   const handleLogout = async () => {
@@ -19,22 +21,29 @@ export default function AdminSidebar({ activeTab, setActiveTab, userRole }: Admi
     router.push('/login');
   };
 
+  const handleTabClick = (tab: string) => {
+    setActiveTab(tab);
+    setIsOpen(false);
+  };
+
   return (
-    <aside className={styles.sidebar}>
+    <>
+      <div className={`${styles.sidebarOverlay} ${isOpen ? styles.sidebarOverlayOpen : ''}`} onClick={() => setIsOpen(false)}></div>
+      <aside className={`${styles.sidebar} ${isOpen ? styles.sidebarOpen : ''}`}>
       <div className={styles.sidebarBrand}>
         <div className={styles.logoCircle}>K</div>
-        <span>Kostan<span>Admin</span></span>
+        <span>Kost H Kodir<span> Admin</span></span>
       </div>
       <nav className={styles.sidebarNav}>
-        <a href="#" className={activeTab === 'dashboard' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('dashboard'); }}><LayoutDashboard size={20} /> Dashboard</a>
-        <a href="#" className={activeTab === 'rooms' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('rooms'); }}><BedDouble size={20} /> Manajemen Kamar</a>
-        <a href="#" className={activeTab === 'occupants' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('occupants'); }}><Users size={20} /> Data Penghuni</a>
-        <a href="#" className={activeTab === 'finance' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('finance'); }}><TrendingUp size={20} /> Laporan Keuangan</a>
+        <a href="#" className={activeTab === 'dashboard' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('dashboard'); }}><LayoutDashboard size={20} /> Dashboard</a>
+        <a href="#" className={activeTab === 'rooms' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('rooms'); }}><BedDouble size={20} /> Manajemen Kamar</a>
+        <a href="#" className={activeTab === 'occupants' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('occupants'); }}><Users size={20} /> Data Penghuni</a>
+        <a href="#" className={activeTab === 'finance' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('finance'); }}><TrendingUp size={20} /> Laporan Keuangan</a>
         {userRole === 'super_admin' && (
-          <a href="#" className={activeTab === 'super_admin' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('super_admin'); }}><Shield size={20} /> Akses Admin</a>
+          <a href="#" className={activeTab === 'super_admin' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('super_admin'); }}><Shield size={20} /> Akses Admin</a>
         )}
         <div className={styles.navSeparator}></div>
-        <a href="#" className={activeTab === 'settings' ? styles.active : ''} onClick={(e) => { e.preventDefault(); setActiveTab('settings'); }}><Settings size={20} /> Pengaturan</a>
+        <a href="#" className={activeTab === 'settings' ? styles.active : ''} onClick={(e) => { e.preventDefault(); handleTabClick('settings'); }}><Settings size={20} /> Pengaturan</a>
       </nav>
       <div className={styles.sidebarFooter}>
         <button className={styles.logoutBtn} onClick={handleLogout}>
@@ -42,6 +51,7 @@ export default function AdminSidebar({ activeTab, setActiveTab, userRole }: Admi
         </button>
       </div>
     </aside>
+    </>
   );
 }
 

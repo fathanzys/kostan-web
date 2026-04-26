@@ -49,10 +49,10 @@ export default function LaporanKeuanganTab() {
         </div>
         <div style={{ display: 'flex', gap: '1rem' }}>
           <div style={{ background: 'rgba(16, 185, 129, 0.1)', color: '#10b981', padding: '0.5rem 1rem', borderRadius: '8px', fontWeight: 'bold' }}>
-            Pemasukan: Rp {totalIncome.toLocaleString()}
+            Pemasukan: Rp {totalIncome.toLocaleString('id-ID')}
           </div>
           <div style={{ background: 'rgba(239, 68, 68, 0.1)', color: '#ef4444', padding: '0.5rem 1rem', borderRadius: '8px', fontWeight: 'bold' }}>
-            Pengeluaran: Rp {totalExpense.toLocaleString()}
+            Pengeluaran: Rp {totalExpense.toLocaleString('id-ID')}
           </div>
         </div>
         <div style={{ display: 'flex', gap: '0.5rem' }}>
@@ -88,7 +88,7 @@ export default function LaporanKeuanganTab() {
                   </span>
                 </td>
                 <td style={{ color: trx.type === 'Income' ? '#10b981' : '#ef4444', fontWeight: 'bold' }}>
-                  {trx.type === 'Income' ? '+' : '-'} {trx.amount.toLocaleString()}
+                  {trx.type === 'Income' ? '+' : '-'} {trx.amount.toLocaleString('id-ID')}
                 </td>
                 <td>{trx.occupants?.name || '-'}</td>
                 <td>

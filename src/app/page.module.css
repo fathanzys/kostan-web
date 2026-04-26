@@ -100,13 +100,13 @@
 .badge {
   display: inline-block;
   padding: 0.5rem 1.25rem;
-  background: rgba(16, 185, 129, 0.1);
+  background: var(--accent);
   color: var(--primary);
   border-radius: 100px;
   font-size: 0.875rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  border: 1px solid rgba(16, 185, 129, 0.2);
+  border: 1px solid rgba(37, 99, 235, 0.2);
 }
 
 .heroBtns {
@@ -123,8 +123,8 @@
   position: relative;
   border-radius: 2rem;
   overflow: hidden;
-  box-shadow: var(--shadow-lg);
-  border: 4px solid var(--card);
+  box-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.25); /* Deep blue glow */
+  border: 8px solid var(--card);
 }
 
 .mainHeroImage img {
@@ -137,15 +137,16 @@
   position: absolute;
   bottom: 2rem;
   left: -2rem;
-  background: var(--card);
+  background: rgba(248, 250, 252, 0.85); /* Slightly transparent white */
   padding: 1.25rem 2rem;
   border-radius: 1.5rem;
   box-shadow: var(--shadow-lg);
   display: flex;
   align-items: center;
   gap: 1.25rem;
-  border: 1px solid var(--border);
-  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
 }
 
 .fcIcon {

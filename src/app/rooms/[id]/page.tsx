@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './room-detail.module.css';
 import { supabase, Room } from '@/lib/supabase';
+import Chatbot from '@/components/Chatbot';
 
 export default function RoomDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = use(params);
@@ -105,7 +106,7 @@ export default function RoomDetailPage({ params }: { params: Promise<{ id: strin
             whileHover={{ scale: 1.02 }}
           >
             <div className={styles.price}>
-              Rp {room.price.toLocaleString()}<span>/bulan</span>
+              Rp {room.price.toLocaleString('id-ID')}<span>/bulan</span>
             </div>
             <p className={styles.inclusive}>*Sudah termasuk air dan iuran lingkungan</p>
           </motion.div>
@@ -134,8 +135,9 @@ export default function RoomDetailPage({ params }: { params: Promise<{ id: strin
 
           <div className={styles.cta}>
             <a 
-              href={`https://wa.me/628123456789?text=Halo, saya tertarik dengan ${room.name}. Apakah masih tersedia untuk bulan depan?`} 
+              href={`https://wa.me/6281211101540?text=Halo, saya tertarik dengan ${room.name}. Apakah masih tersedia untuk bulan depan?`} 
               className="btn btn-primary"
+              target="_blank" rel="noopener noreferrer"
               style={{ width: '100%', padding: '1.25rem', fontSize: '1.1rem' }}
             >
               <Phone size={20} /> Hubungi Pemilik Sekarang
@@ -144,6 +146,7 @@ export default function RoomDetailPage({ params }: { params: Promise<{ id: strin
           </div>
         </motion.section>
       </div>
+      <Chatbot />
     </main>
   );
 }

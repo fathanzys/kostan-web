@@ -14,6 +14,20 @@
   position: sticky;
   top: 0;
   height: 100vh;
+  z-index: 50;
+  transition: transform 0.3s ease;
+}
+
+.sidebarOpen {
+  transform: translateX(0) !important;
+}
+
+.sidebarOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 40;
+  display: none;
 }
 
 .sidebarBrand {
@@ -186,6 +200,64 @@
   color: var(--muted-foreground);
 }
 
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 1rem);
+  right: 0;
+  width: 220px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownHeader {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.875rem 1.25rem;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  text-decoration: none;
+}
+
+.dropdownItem:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+.dropdownDivider {
+  height: 1px;
+  background: var(--border);
+  margin: 0.25rem 0;
+}
+
+.dropdownDanger {
+  color: var(--destructive);
+}
+
+.dropdownDanger:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--destructive);
+}
+
 .pageTitle {
   margin-bottom: 2.5rem;
 }
@@ -200,6 +272,10 @@
   display: flex;
   align-items: center;
   gap: 1rem;
+}
+
+.tableTitle h2 {
+  white-space: nowrap;
 }
 
 .countBadge {
@@ -298,10 +374,12 @@
 
 .tableContainer {
   overflow-x: auto;
+  width: 100%;
 }
 
 .table {
   width: 100%;
+  min-width: 800px;
   border-collapse: collapse;
   text-align: left;
 }
@@ -313,6 +391,7 @@
   text-transform: uppercase;
   color: var(--muted-foreground);
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .table td {
@@ -434,7 +513,7 @@
   padding: 0.75rem 1rem;
   background: var(--accent);
   border: 1px solid var(--border);
-  border-radius: 0.75rem;
+  border-radius: var(--radius);
   color: var(--foreground);
   outline: none;
   font-family: inherit;
@@ -454,12 +533,70 @@
 
 @media (max-width: 1024px) {
   .sidebar {
-    width: 80px;
+    position: fixed;
+    transform: translateX(-100%);
+    width: 280px;
   }
-  .sidebarBrand span, .sidebarNav a span, .sidebarFooter button span {
-    display: none;
+  .sidebarOverlayOpen {
+    display: block;
   }
   .statsGrid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+  .header {
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .menuBtn {
+    order: 1;
+  }
+  .headerActions {
+    order: 2;
+    gap: 1rem;
+  }
+  .searchBar {
+    order: 3;
+    max-width: 100%;
+    width: 100%;
+  }
+  .tableHeader {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+  }
+  .tableHeader button {
+    width: 100%;
+    white-space: nowrap;
+  }
+  .userProfile .userInfo {
+    display: none;
+  }
+}
+
+.menuBtn {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--foreground);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+
+.menuBtn:active {
+  background: var(--accent);
+}
+
+@media (max-width: 1024px) {
+  .menuBtn {
+    display: block;
   }
 }

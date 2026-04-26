@@ -81,7 +81,7 @@ export default function LoginPage() {
           <h1>{isLogin ? 'Login Admin' : 'Daftar Admin'}</h1>
           <p className="text-muted">
             {isLogin 
-              ? 'Masuk ke sistem manajemen Kostan Premium.' 
+              ? 'Masuk ke sistem manajemen Kost H Kodir.' 
               : 'Daftar untuk mendapatkan akses admin.'}
           </p>
         </div>

@@ -5,8 +5,8 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Kostan Premium | Hunian Nyaman & Modern",
-  description: "Temukan hunian kostan modern dengan fasilitas lengkap dan lokasi strategis untuk kenyamanan maksimal Anda.",
+  title: "Kost H Kodir | Hunian Nyaman & Modern",
+  description: "Temukan hunian kost modern dengan fasilitas lengkap dan lokasi strategis untuk kenyamanan maksimal Anda.",
 };
 
 export default function RootLayout({

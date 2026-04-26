@@ -6,6 +6,7 @@ import { Home, Zap, Shield, MapPin, Phone, ArrowRight, Star, Menu, X } from 'luc
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from './page.module.css';
 import { supabase, Room } from '@/lib/supabase';
+import Chatbot from '@/components/Chatbot';
 
 export default function LandingPage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -34,7 +35,7 @@ export default function LandingPage() {
           <div className={styles.navInner}>
             <div className={styles.logo}>
               <Home className={styles.logoIcon} />
-              <span>Kostan<span>Premium</span></span>
+              <span>Kost<span> H Kodir</span></span>
             </div>
 
             {/* Desktop Links */}
@@ -97,14 +98,14 @@ export default function LandingPage() {
                 <span className="text-primary">Untuk Kenyamanan Anda</span>
               </h1>
               <p className="text-muted">
-                Kostan eksklusif dengan fasilitas lengkap, keamanan 24 jam,
+                Kost eksklusif dengan fasilitas lengkap, keamanan 24 jam,
                 dan lokasi yang strategis di pusat kota. Cocok untuk mahasiswa dan pekerja.
               </p>
               <div className={styles.heroBtns}>
                 <a href="#rooms" className="btn btn-primary">
                   Lihat Kamar <ArrowRight size={18} />
                 </a>
-                <a href="https://wa.me/628123456789" className="btn btn-outline">
+                <a href="https://wa.me/6281211101540" className="btn btn-outline" target="_blank" rel="noopener noreferrer">
                   <Phone size={18} /> Hubungi Kami
                 </a>
               </div>
@@ -195,7 +196,7 @@ export default function LandingPage() {
                         <h3>{room.name}</h3>
                         <div className={styles.rating}><Star size={14} fill="currentColor" /> 4.9</div>
                       </div>
-                      <div className={styles.price}>Rp {room.price.toLocaleString()}<span>/bulan</span></div>
+                      <div className={styles.price}>Rp {room.price.toLocaleString('id-ID')}<span>/bulan</span></div>
                       <div className={styles.facilities}>
                         {room.facilities?.map(f => <span key={f}>{f}</span>)}
                       </div>
@@ -241,7 +242,7 @@ export default function LandingPage() {
       <footer className={styles.footer}>
         <div className="container">
           <div className={styles.footerInner}>
-            <p>&copy; 2024 Kostan Premium. All rights reserved.</p>
+            <p>&copy; 2026 Kost H Kodir. All rights reserved.</p>
             <div className={styles.footerLinks}>
               <a href="#">Privacy Policy</a>
               <a href="#">Terms of Service</a>
@@ -249,6 +250,7 @@ export default function LandingPage() {
           </div>
         </div>
       </footer>
+      <Chatbot />
     </main>
   );
 }

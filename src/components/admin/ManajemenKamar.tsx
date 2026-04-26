@@ -49,7 +49,7 @@ export default function ManajemenKamar({
                     <strong>{room.name}</strong>
                   </div>
                 </td>
-                <td>Rp {room.price.toLocaleString()}</td>
+                <td>Rp {room.price.toLocaleString('id-ID')}</td>
                 <td>
                   <span className={`${styles.statusBadge} ${room.status === 'Available' ? styles.statusAvailable : styles.statusOccupied}`}>
                     <div className={styles.dot}></div>
